@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Material de clase — Comunicación Oral y Escrita (2601ML1620). Actividades, rúbricas y criterios de evaluación.">
+  <title>Material de Clase | Comunicando con Inteligencia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Estilos específicos de esta página ── */
+    .course-hero {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 2.5rem 2rem;
+    }
+    .course-hero__inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .course-hero__label {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      opacity: .7;
+      margin-bottom: .4rem;
+    }
+    .course-hero__title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: .4rem;
+    }
+    .course-hero__meta {
+      font-size: .82rem;
+      opacity: .8;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem 1.5rem;
+      margin-top: .75rem;
+    }
+    .course-hero__meta span {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    /* Alerta de vencimiento */
+    .alert-banner {
+      background: #fff3cd;
+      border: 1px solid #f0c040;
+      border-left: 4px solid #d4a017;
+      border-radius: var(--radius);
+      padding: .85rem 1.25rem;
+      font-size: .88rem;
+      color: #5d4a00;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+    .alert-banner__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d4a017;
+      flex-shrink: 0;
+    }
+
+    /* Tarjeta de actividad */
+    .activity-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .activity-card__header {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .activity-card__header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .activity-card__due {
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      padding: .3rem .8rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255,255,255,.3);
+    }
+    .activity-card__body {
+      padding: 1.75rem 2rem;
+    }
+
+    /* Grid de metadatos */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .meta-item {
+      background: var(--color-tag-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: .9rem 1rem;
+    }
+    .meta-item__label {
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--color-muted);
+      margin-bottom: .3rem;
+    }
+    .meta-item__value {
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* Secciones del contenido */
+    .section-block {
+      margin-bottom: 2rem;
+    }
+    .section-block h3 {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--color-muted);
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 1rem;
+    }
+    .section-block p,
+    .section-block li {
+      font-size: .92rem;
+      line-height: 1.75;
+      color: var(--color-text);
+    }
+    .section-block ul,
+    .section-block ol {
+      padding-left: 1.4rem;
+      margin-top: .4rem;
+    }
+    .section-block li { margin-bottom: .35rem; }
+
+    /* Rúbrica */
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+      margin-top: .5rem;
+    }
+    .rubric-table thead {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .rubric-table th {
+      padding: .65rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .rubric-table td {
+      padding: .65rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      vertical-align: top;
+    }
+    .rubric-table tr:nth-child(even) td { background: #f3f7fb; }
+    .badge {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 2rem;
+    }
+    .badge--pass  { background: #d4edda; color: #155724; }
+    .badge--fail  { background: #f8d7da; color: #721c24; }
+
+    /* Criterios formales */
+    .criteria-list {
+      list-style: none;
+      padding: 0;
+    }
+    .criteria-list li {
+      display: flex;
+      gap: .75rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: .9rem;
+      align-items: flex-start;
+    }
+    .criteria-list li:last-child { border-bottom: none; }
+    .criteria-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      margin-top: .55rem;
+      flex-shrink: 0;
+    }
+
+    /* Nomenclatura */
+    .nomenclature-box {
+      background: var(--color-tag-bg);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-size: .88rem;
+    }
+    .nomenclature-box code {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: .85rem;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 3px;
+      padding: .35rem .7rem;
+      margin: .4rem 0;
+      color: var(--color-primary);
+    }
+
+    .page-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    @media (max-width: 600px) {
+      .activity-card__body { padding: 1.25rem; }
+      .meta-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO ===== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo">
+        <h1>Comunicando con Inteligencia</h1>
+        <span>Inteligencia emocional &amp; comunicación profesional</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul class="site-header__nav">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="entrada1.html">Entrada 1</a></li>
+          <li><a href="entrada2.html">Entrada 2</a></li>
+          <li><span class="nav-disabled">Entrada 3</span></li>
+          <li><span class="nav-disabled">Entrada 4</span></li>
+          <li><span class="nav-disabled">Entrada 5</span></li>
+          <li><a href="recursos.html" class="active">Material de Clase</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== ENCABEZADO DEL CURSO ===== -->
+  <div class="course-hero">
+    <div class="course-hero__inner">
+      <p class="course-hero__label">Material de clase</p>
+      <h1 class="course-hero__title">Comunicación Oral y Escrita (2601ML1620)</h1>
+      <div class="course-hero__meta">
+        <span>UTNSL-2641-C-I-2601ML1620</span>
+        <span>Edgar Efraín Dorantes Padrón</span>
+        <span>Semestre Primero &nbsp;·&nbsp; 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="page-main">
+
+    <!-- Alerta de vencimiento -->
+    <div class="alert-banner" role="alert">
+      <span class="alert-banner__dot"></span>
+      <span>
+        <strong>Actualizaciones:</strong> Nuevas alertas disponibles &nbsp;·&nbsp;
+        Vencimiento próximo: <strong>4.2 Actividad de aprendizaje 1</strong> —
+        29 de marzo de 2026, 23:59
+      </span>
+    </div>
+
+    <!-- Actividad 1 -->
+    <div class="activity-card">
+      <div class="activity-card__header">
+        <h2>4.2 Actividad de aprendizaje 1</h2>
+        <span class="activity-card__due">Vencimiento: 29 de marzo de 2026, 23:59</span>
+      </div>
+
+      <div class="activity-card__body">
+
+        <!-- Metadatos -->
+        <div class="meta-grid">
+          <div class="meta-item">
+            <p class="meta-item__label">Tipo de actividad</p>
+            <p class="meta-item__value">Proyecto individual</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Ponderación</p>
+            <p class="meta-item__value">25%</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Formato de entrega</p>
+            <p class="meta-item__value">PDF en plataforma</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Calificación mínima aprobatoria</p>
+            <p class="meta-item__value">6.0</p>
+          </div>
+        </div>
+
+        <!-- Objetivo -->
+        <div class="section-block">
+          <h3>Objetivo de la actividad</h3>
+          <p>
+            Aplicar técnicas y herramientas de comunicación oral y escrita a través de la creación de un
+            blog personal para compartir reflexiones, análisis, experiencias y recursos relacionados con
+            los temas abordados en la materia.
+          </p>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section-block">
+          <h3>Descripción de la actividad</h3>
+          <p>
+            El proyecto de la materia consiste en utilizar los conocimientos adquiridos para publicar
+            información dirigida a personas que quieran mejorar sus habilidades comunicativas. Para ello,
+            se debe abrir una cuenta en una aplicación en línea que permita compartir información en
+            formato de blog. Una opción es
+            <a href="https://www.blogger.com" target="_blank" rel="noopener noreferrer">Blogger</a>.
+          </p>
+          <p style="margin-top:.75rem;">
+            El proyecto se desarrolla a lo largo de toda la materia y se divide en tres entregas.
+            En esta primera parte se desarrolla lo siguiente:
+          </p>
+          <ul>
+            <li>
+              Elige un tema de interés relacionado con la comunicación oral y escrita, realiza una
+              investigación sobre él, recopilando información relevante de fuentes confiables. Después
+              analiza y sintetiza la información para identificar aspectos clave a abordar en el blog.
+            </li>
+            <li>
+              <strong>Entrada 1:</strong> establece el título y objetivo del blog, el público al que se
+              dirige y lo que se busca lograr con él, así como las ventajas y desventajas de saber
+              comunicarse asertivamente.
+            </li>
+            <li>
+              <strong>Entrada 2:</strong> aborda al menos dos aspectos del tema elegido de manera clara,
+              coherente y atractiva para los lectores (reflexiones personales, análisis de casos,
+              recomendaciones, ejemplos prácticos, entre otros).
+            </li>
+            <li>
+              Da estructura y diseño: organiza las secciones, crea categorías e integra imágenes o
+              elementos visuales pertinentes.
+            </li>
+            <li>
+              Al final de cada entrega, integra las referencias consultadas en formato APA.
+            </li>
+            <li>
+              Revisa y edita el contenido del blog para asegurar calidad gramatical, ortografía,
+              redacción, cohesión y coherencia del texto.
+            </li>
+          </ul>
+          <p style="margin-top:.75rem;">
+            Al terminar la primera parte, copia y pega el enlace del blog en un documento de Word
+            integrado por: introducción (contextualiza tu trabajo), desarrollo (enlace del blog y
+            descripción general de la actividad), conclusiones (aprendizajes alcanzados) y referencias
+            APA. Sube el documento a la plataforma dentro de las fechas establecidas.
+          </p>
+          <p style="margin-top:.75rem;">
+            Verifica la originalidad del contenido con la herramienta <strong>Turnitin</strong>,
+            disponible en plataforma.
+          </p>
+        </div>
+
+        <!-- Criterios formales -->
+        <div class="section-block">
+          <h3>Criterios formales de entrega</h3>
+          <ul class="criteria-list">
+            <li>Incluye una portada con datos de identificación: nombre, grupo, materia y semestre.</li>
+            <li>Tipo de letra: Arial a 11 puntos, con interlineado de 1.15.</li>
+            <li>Utiliza como mínimo dos fuentes de consulta confiables, referenciadas en formato APA.</li>
+            <li>Cuida la ortografía y la redacción del trabajo.</li>
+            <li>
+              Guarda el trabajo en formato PDF con la siguiente nomenclatura:
+              <div class="nomenclature-box" style="margin-top:.6rem;">
+                <code>ApellidoP_ApellidoM_Nombres_COE_Actividad1</code>
+                <span style="font-size:.8rem;color:var(--color-muted);">Ejemplo:</span>
+                <code>Rodríguez_Castro_David_COE_Actividad1</code>
+                <span style="font-size:.8rem;color:var(--color-muted);">Tu archivo:</span>
+                <code>Dorantes_Padrón_EdgarEfraín_COE_Actividad1</code>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Rúbrica -->
+        <div class="section-block">
+          <h3>Rúbrica de evaluación — Blog</h3>
+          <p style="font-size:.82rem;color:var(--color-muted);margin-bottom:.75rem;">
+            La rúbrica está conformada por ocho criterios de evaluación y cuatro niveles de dominio.
+          </p>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Nivel de desempeño</th>
+                <th>Descripción</th>
+                <th>Puntuación por dominio</th>
+                <th>Puntos por originalidad</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Excelente</strong></td>
+                <td>Muestra un completo entendimiento de la asignación. Todos los requerimientos están incluidos en la respuesta.</td>
+                <td>Hasta 90 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Satisfactorio</strong></td>
+                <td>Muestra un entendimiento satisfactorio de la asignación. Todos los requerimientos están incluidos en la respuesta.</td>
+                <td>Hasta 70 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Regular</strong></td>
+                <td>Muestra un entendimiento parcial de la asignación. La mayoría de los requerimientos están incluidos en la respuesta.</td>
+                <td>Hasta 50 pts</td>
+                <td>10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Regular</strong></td>
+                <td>Muestra un entendimiento parcial de la asignación. La mayoría de los requerimientos están incluidos en la respuesta.</td>
+                <td>Hasta 50 pts</td>
+                <td>0 pts</td>
+                <td><span class="badge badge--fail">No aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Insuficiente</strong></td>
+                <td>Muestra poco entendimiento de la asignación. Se perdieron muchos requerimientos de la tarea.</td>
+                <td>Hasta 40 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--fail">No aprobatoria</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Material de apoyo -->
+        <div class="section-block">
+          <h3>Material de apoyo</h3>
+          <p style="color:var(--color-muted);font-size:.88rem;">No aplica (N/A).</p>
+        </div>
+
+      </div><!-- /activity-card__body -->
+    </div><!-- /activity-card -->
+
+    <!-- ===== ACTIVIDAD 2 ===== -->
+    <div class="activity-card">
+      <div class="activity-card__header">
+        <h2>4.2 Actividad de aprendizaje 2</h2>
+        <span class="activity-card__due">Vencimiento: 9 de abril de 2026, 23:59</span>
+      </div>
+
+      <div class="activity-card__body">
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <p class="meta-item__label">Tipo de actividad</p>
+            <p class="meta-item__value">Proyecto individual</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Ponderación</p>
+            <p class="meta-item__value">25%</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Formato de entrega</p>
+            <p class="meta-item__value">PDF en plataforma</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Calificación mínima aprobatoria</p>
+            <p class="meta-item__value">6.0</p>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h3>Objetivo de la actividad</h3>
+          <p>Aplicar técnicas y herramientas de comunicación oral y escrita a través de la creación de un blog personal para compartir reflexiones, análisis, experiencias y recursos relacionados con los temas abordados en la materia.</p>
+        </div>
+
+        <div class="section-block">
+          <h3>Descripción de la actividad</h3>
+          <p>La segunda entrega consiste en integrar dos entradas al blog, considerando el mismo tema elegido en la actividad anterior. Las entradas serán las siguientes:</p>
+          <ul>
+            <li><strong>Entrada 3:</strong> elige alguno de los siguientes tipos textuales: resumen, síntesis, reseña (de libro o película), ensayo o informe, y desarróllalo con el tema en cuestión, respetando las reglas de redacción y con base en lo revisado sobre la creación de textos.</li>
+            <li><strong>Entrada 4:</strong> graba un video de 1 a 2 minutos en el que compartas la importancia del tema abordado en el blog y cómo será de utilidad a los profesionistas que recién egresan. Debe incluir una opinión acompañada de un ejemplo real o cercano y una frase final a manera de consejo. Se sugiere publicarlo en YouTube e integrarlo como archivo multimedia reproducible desde el blog.</li>
+          </ul>
+          <p>Mantén estructura y diseño, organiza secciones, respeta categorías e integra imágenes pertinentes. Al final de cada entrada incluye referencias en formato APA.</p>
+          <p>Al terminar, copia el enlace del blog en un documento Word con: introducción, desarrollo (enlace + descripción), conclusiones y referencias APA. Verifica originalidad con <strong>Turnitin</strong> antes de entregar.</p>
+        </div>
+
+        <div class="section-block">
+          <h3>Criterios formales de entrega</h3>
+          <ul class="criteria-list">
+            <li>Portada con datos de identificación: nombre, grupo, materia y semestre.</li>
+            <li>Tipo de letra: Arial a 11 puntos, con interlineado de 1.15.</li>
+            <li>Mínimo dos fuentes de consulta confiables en formato APA.</li>
+            <li>Cuida la ortografía y la redacción.</li>
+            <li>
+              Guarda en PDF con la siguiente nomenclatura:
+              <div class="nomenclature-box" style="margin-top:.6rem;">
+                <code>ApellidoP_ApellidoM_Nombres_COE_Actividad2</code>
+                <span style="font-size:.8rem;color:var(--color-muted);">Ejemplo:</span>
+                <code>Rodríguez_Castro_David_COE_Actividad2</code>
+                <span style="font-size:.8rem;color:var(--color-muted);">Tu archivo:</span>
+                <code>Dorantes_Padrón_EdgarEfraín_COE_Actividad2</code>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-block">
+          <h3>Rúbrica de evaluación — Blog</h3>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Nivel de desempeño</th>
+                <th>Descripción</th>
+                <th>Puntuación por dominio</th>
+                <th>Puntos por originalidad</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Excelente</strong></td>
+                <td>Muestra un completo entendimiento de la asignación. Todos los requerimientos están incluidos.</td>
+                <td>Hasta 90 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Satisfactorio</strong></td>
+                <td>Muestra un entendimiento satisfactorio. Todos los requerimientos están incluidos.</td>
+                <td>Hasta 70 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Regular</strong></td>
+                <td>Muestra un entendimiento parcial. La mayoría de los requerimientos están incluidos.</td>
+                <td>Hasta 50 pts</td>
+                <td>10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Regular</strong></td>
+                <td>Muestra un entendimiento parcial. La mayoría de los requerimientos están incluidos.</td>
+                <td>Hasta 50 pts</td>
+                <td>0 pts</td>
+                <td><span class="badge badge--fail">No aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Insuficiente</strong></td>
+                <td>Muestra poco entendimiento. Se perdieron muchos requerimientos.</td>
+                <td>Hasta 40 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--fail">No aprobatoria</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Material de apoyo</h3>
+          <p style="color:var(--color-muted);font-size:.88rem;">No aplica (N/A).</p>
+        </div>
+
+      </div><!-- /activity-card__body -->
+    </div><!-- /activity-card -->
+
+    <!-- ===== ACTIVIDAD 3 ===== -->
+    <div class="activity-card">
+      <div class="activity-card__header">
+        <h2>4.2 Actividad de aprendizaje 3</h2>
+        <span class="activity-card__due">Vencimiento: 26 de abril de 2026, 23:59</span>
+      </div>
+
+      <div class="activity-card__body">
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <p class="meta-item__label">Tipo de actividad</p>
+            <p class="meta-item__value">Proyecto individual</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Ponderación</p>
+            <p class="meta-item__value">30%</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Formato de entrega</p>
+            <p class="meta-item__value">Word en plataforma</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Calificación mínima aprobatoria</p>
+            <p class="meta-item__value">6.0</p>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h3>Objetivo de la actividad</h3>
+          <p>Aplicar técnicas y herramientas de comunicación oral y escrita a través de la creación de un blog personal para compartir reflexiones, análisis, experiencias y recursos relacionados con los temas abordados en la materia.</p>
+        </div>
+
+        <div class="section-block">
+          <h3>Descripción de la actividad</h3>
+          <p>La tercera entrega consiste en publicar una última entrada y comentar en el blog de un compañero de clase:</p>
+          <ul>
+            <li><strong>Entrada 5:</strong> elige uno de los elementos o características de la comunicación oral revisados en las sesiones 6 y 7, y produce un audio de 1 a 2 minutos en el que resaltes, desde tu punto de vista y experiencia personal, la relevancia del elemento o característica elegida.</li>
+            <li><strong>Comentario en blog de compañero:</strong> escribe un comentario en el blog de algún compañero dando retroalimentación a su video (elaborado en la Actividad 2). Señala un acierto y una cuestión a mejorar, con base en las características de la comunicación verbal y no verbal revisadas. Sé respetuoso, claro, concreto y específico en el concepto teórico del que parte tu comentario.</li>
+          </ul>
+          <p>Mantén adecuada estructura y diseño. Al final de la nueva entrada incluye referencias en formato APA.</p>
+          <p>Al completar el blog, copia el enlace en un documento Word con: introducción, desarrollo (descripción de la actividad, enlace del blog y el comentario realizado indicando el nombre del compañero), conclusiones y referencias APA. Verifica originalidad con <strong>Turnitin</strong>.</p>
+        </div>
+
+        <div class="section-block">
+          <h3>Criterios formales de entrega</h3>
+          <ul class="criteria-list">
+            <li>Tipo de letra: Arial a 11 puntos, con interlineado de 1.15.</li>
+            <li>Cuida la ortografía y la redacción.</li>
+            <li>
+              Guarda tu trabajo con la siguiente nomenclatura:
+              <div class="nomenclature-box" style="margin-top:.6rem;">
+                <code>ApellidoP_ApellidoM_Nombres_ActividadS7</code>
+                <span style="font-size:.8rem;color:var(--color-muted);">Ejemplo:</span>
+                <code>Rodríguez_Castro_David_ActividadS7</code>
+                <span style="font-size:.8rem;color:var(--color-muted);">Tu archivo:</span>
+                <code>Dorantes_Padrón_EdgarEfraín_ActividadS7</code>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-block">
+          <h3>Rúbrica de evaluación — Blog 3</h3>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Nivel de desempeño</th>
+                <th>Descripción</th>
+                <th>Puntuación por dominio</th>
+                <th>Puntos por originalidad</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Excelente</strong></td>
+                <td>Muestra un completo entendimiento de la asignación. Todos los requerimientos están incluidos.</td>
+                <td>Hasta 90 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Satisfactorio</strong></td>
+                <td>Muestra un entendimiento satisfactorio. Todos los requerimientos están incluidos.</td>
+                <td>Hasta 70 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Regular</strong></td>
+                <td>Muestra un entendimiento parcial. La mayoría de los requerimientos están incluidos.</td>
+                <td>Hasta 50 pts</td>
+                <td>10 pts</td>
+                <td><span class="badge badge--pass">Aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Regular</strong></td>
+                <td>Muestra un entendimiento parcial. La mayoría de los requerimientos están incluidos.</td>
+                <td>Hasta 50 pts</td>
+                <td>0 pts</td>
+                <td><span class="badge badge--fail">No aprobatoria</span></td>
+              </tr>
+              <tr>
+                <td><strong>Insuficiente</strong></td>
+                <td>Muestra poco entendimiento. Se perdieron muchos requerimientos.</td>
+                <td>Hasta 40 pts</td>
+                <td>0 o 10 pts</td>
+                <td><span class="badge badge--fail">No aprobatoria</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Material de apoyo</h3>
+          <p style="color:var(--color-muted);font-size:.88rem;">No aplica (N/A).</p>
+        </div>
+
+      </div><!-- /activity-card__body -->
+    </div><!-- /activity-card -->
+
+    <!-- ===== EVALUACIÓN GENERAL ===== -->
+    <div class="activity-card">
+      <div class="activity-card__header" style="background:#2e4a1a;">
+        <h2>4.2 Evaluación General de la Materia</h2>
+        <span class="activity-card__due">Vencimiento: 3 de mayo de 2026, 23:59</span>
+      </div>
+
+      <div class="activity-card__body">
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <p class="meta-item__label">Tipo</p>
+            <p class="meta-item__value">Evaluación general</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Fecha límite</p>
+            <p class="meta-item__value">3 de mayo de 2026</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Hora límite</p>
+            <p class="meta-item__value">23:59</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-item__label">Calificación mínima aprobatoria</p>
+            <p class="meta-item__value">6.0</p>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h3>Descripción</h3>
+          <p>
+            Cierre del proyecto de la materia <strong>Comunicación Oral y Escrita (2601ML1620)</strong>.
+            Comprende la evaluación integral de todas las entregas del blog y los documentos de Word
+            correspondientes a las tres actividades de aprendizaje desarrolladas a lo largo del semestre.
+          </p>
+          <p style="margin-top:.75rem;">
+            Asegúrate de que el blog esté completo, con todas las entradas publicadas, las referencias
+            en formato APA y los documentos entregados en la plataforma antes del cierre.
+            Verifica la originalidad del contenido con <strong>Turnitin</strong>.
+          </p>
+        </div>
+
+        <div class="section-block">
+          <h3>Resumen de entregas del semestre</h3>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Actividad</th>
+                <th>Vencimiento</th>
+                <th>Ponderación</th>
+                <th>Entradas del blog</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Actividad de aprendizaje 1</strong></td>
+                <td>29 mar 2026, 23:59</td>
+                <td>25%</td>
+                <td>Entradas 1 y 2</td>
+              </tr>
+              <tr>
+                <td><strong>Actividad de aprendizaje 2</strong></td>
+                <td>9 abr 2026, 23:59</td>
+                <td>25%</td>
+                <td>Entradas 3 y 4</td>
+              </tr>
+              <tr>
+                <td><strong>Actividad de aprendizaje 3</strong></td>
+                <td>26 abr 2026, 23:59</td>
+                <td>30%</td>
+                <td>Entrada 5 + comentario</td>
+              </tr>
+              <tr>
+                <td><strong>Evaluación General</strong></td>
+                <td>3 may 2026, 23:59</td>
+                <td>—</td>
+                <td>Cierre del proyecto</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!-- /activity-card__body -->
+    </div><!-- /activity-card -->
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="site-footer">
+    <p>
+      <strong>Comunicando con Inteligencia</strong><br>
+      Autor: Edgar Efraín Dorantes Padrón &nbsp;·&nbsp;
+      Materia: Comunicación Oral y Escrita (2601ML1620) — UTNSL-2641-C-I-2601ML1620<br>
+      Semestre Primero &nbsp;·&nbsp; 2026
+    </p>
+  </footer>
+
+</body>
+</html>
