@@ -110,9 +110,9 @@
           <p class="entry-card__meta">Entrada 3 &nbsp;·&nbsp; Ensayo &nbsp;·&nbsp; 3 de abril de 2026</p>
           <h2 class="entry-card__title">El ingeniero que no sabe comunicar: inteligencia emocional y la brecha silenciosa del egresado tecnológico</h2>
           <p class="entry-card__excerpt">
-            Ensayo que analiza el perfil del egresado de carreras tecnológicas, los retos
-            comunicativos específicos que enfrenta al salir al mercado laboral y cómo la
-            inteligencia emocional puede cerrar esa brecha invisible.
+            <span class="tipo-tip"><strong><abbr title="Texto argumentativo que defiende ideas y expresa opiniones">Ensayo</abbr></strong><button class="tipo-tip__icon" aria-label="¿Qué es un ensayo?">?</button><span class="tipo-tip__bubble">Texto argumentativo · defiende ideas y expresa opiniones</span></span> que analiza
+            el perfil del egresado de carreras tecnológicas, los retos comunicativos específicos que enfrenta
+            al salir al mercado laboral y cómo la inteligencia emocional puede cerrar esa brecha invisible.
           </p>
           <a href="entrada3.html" class="btn">Leer entrada</a>
         </div>
@@ -173,8 +173,8 @@
         <ul>
           <li><a href="entrada1.html">Entrada 1 — Presentación del blog</a></li>
           <li><a href="entrada2.html">Entrada 2 — Escucha activa y autorregulación</a></li>
-          <li style="color:var(--color-muted);font-size:.85rem;padding:.2rem 0;">Entrada 3 — Próximamente (9 abr)</li>
-          <li style="color:var(--color-muted);font-size:.85rem;padding:.2rem 0;">Entrada 4 — Próximamente (9 abr)</li>
+          <li><a href="entrada3.html">Entrada 3 — Ensayo argumentativo</a></li>
+          <li><a href="entrada4.html">Entrada 4 — Video reflexión</a></li>
           <li style="color:var(--color-muted);font-size:.85rem;padding:.2rem 0;">Entrada 5 — Próximamente (26 abr)</li>
         </ul>
       </div>
@@ -205,5 +205,19 @@
     </p>
   </footer>
 
+  <script>
+    document.querySelectorAll('.tipo-tip__icon').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var tip = btn.closest('.tipo-tip');
+        var isOpen = tip.classList.contains('is-open');
+        document.querySelectorAll('.tipo-tip.is-open').forEach(function(t) { t.classList.remove('is-open'); });
+        if (!isOpen) tip.classList.add('is-open');
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tipo-tip.is-open').forEach(function(t) { t.classList.remove('is-open'); });
+    });
+  </script>
 </body>
 </html>
